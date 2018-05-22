@@ -5,6 +5,7 @@
  */
 (function () {
     var $usernameFld, $passwordFld;
+    var $emailFld, $phoneFld, $dateOfBirthFld;
     var $removeBtn, $editBtn, $createBtn;
     var $firstNameFld, $lastNameFld;
     var $userRowTemplate, $tbody;
@@ -28,13 +29,13 @@
      * Uses the user service createUser() function to create the new user. Updates the list of users on server response
      */
     function createUser() {
-        var username = $('#usernameFld').val();
-        var password = $('#passwordFld').val();
-        var firstName = $('#firstNameFld').val();
-        var lastName = $('#lastNameFld').val();
-        var email = $('#emailFld').val();
-        var phone = $('#phoneFld').val();
-        var dob = $('#dobFld').val();
+        $usernameFld = $('#usernameFld').val();
+        $passwordFld = $('#passwordFld').val();
+        $firstNameFld = $('#firstNameFld').val();
+        $lastNameFld = $('#lastNameFld').val();
+        $emailFld = $('#emailFld').val();
+        $phoneFld = $('#phoneFld').val();
+        $dateOfBirthFld = $('#dateOfBirthFld').val();
 
         var user = {
             username: username,
@@ -77,7 +78,7 @@
      * Uses user service deleteUser() to send a delete request to the server. Updates user list on server response
      */
     function deleteUser() {
-        var deleteBtn = $(event.currentTarget);
+        $removeBtn = $(event.currentTarget);
         var userId = deleteBtn
             .parent()
             .parent()
