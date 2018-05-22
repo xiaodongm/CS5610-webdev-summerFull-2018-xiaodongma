@@ -11,7 +11,6 @@
 <title>User Admin</title>
 </head>
 <body>
-<div class="container">
 	<h1>User Admin</h1>
 	<table class="table">
 		<thead>
@@ -21,6 +20,9 @@
 				<th>First Name</th>
 				<th>Last Name</th>
 				<th>Role</th>
+				<th>E-mail</th>
+				<th>Phone</th>
+				<th>Data of Birth</th>
 				<th>&nbsp;</th>
 			</tr>
 			<tr class="wbdv-form">
@@ -32,6 +34,9 @@
 						<option value="FACULTY">Faculty</option>
 						<option value="STUDENT">Student</option>
 				</select></td>
+				<td><input id="emailFld" class="form-control" placeholder="E-mail" /></td>
+				<td><input id="phoneFld" class="form-control" placeholder="Phone" /></td>
+				<td><input id="dobFld" class="form-control" placeholder="Date of Birth" /></td>
 				<td><span class="float-right" style="white-space: nowrap">
 						<i class="fa-2x fa fa-search wbdv-search"></i> 
 						<i class="fa-2x fa fa-plus wbdv-create"></i> 
@@ -46,6 +51,9 @@
 				<td class="wbdv-first-name">Ada</td>
 				<td class="wbdv-last-name">Lovelace</td>
 				<td class="wbdv-role">FACULTY</td>
+				<td class="wbdv-email">ada.l@example.com</td>
+				<td class="wbdv-phone">(000)000-0000</td>
+				<td class="wbdv-dob">01/01/2018</td>
 				<td class="wbdv-actions"><span class="float-right"> 
 						<i id="wbdv-remove" class="fa-2x fa fa-times wbdv-remove"></i>
 						<i id="wbdv-edit" class="fa-2x fa fa-pencil wbdv-edit"></i>
@@ -53,6 +61,5 @@
 			</tr>
 		</tbody>
 	</table>
-</div>
 </body>
 </html>
