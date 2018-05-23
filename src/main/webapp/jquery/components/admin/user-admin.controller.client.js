@@ -18,9 +18,10 @@
      * and templates. Binds action icons, such as create, update, select, and delete, to respective event handlers
      */
     function main() {
-        $tbody = $('tbody');
+        $tbody = $('.wbdv-tbody');
         $userRowTemplate = $('.wbdv-template');
-        $('.wbdv-create').click(createUser);
+        $createBtn = $('.wbdv-create');
+        $createBtn.click(createUser);
         findAllUsers();
     }
 
@@ -79,7 +80,7 @@
      */
     function deleteUser() {
         $removeBtn = $(event.currentTarget);
-        var userId = deleteBtn
+        var userId = $removeBtn
             .parent()
             .parent()
             .attr('id');
@@ -116,7 +117,7 @@
         $tbody.empty();
         for(var i = 0; i < users.length; i++){
             var user = users[i];
-            var clone = userRowTemplate.clone();
+            var clone = $userRowTemplate.clone();
 
             clone.attr('id', user.id);
 
