@@ -21,7 +21,7 @@
         $userRowTemplate = $('.wbdv-template');
         $createBtn = $('.wbdv-create');
         $createBtn.click(createUser);
-        //findAllUsers();
+        findAllUsers();
     }
 
     /**
@@ -40,22 +40,23 @@
             password: $passwordFld,
             firstName: $firstNameFld,
             lastName: $lastNameFld,
+            role: $roleFld
         };
 
         userService
             .createUser(user)
-            //.then(findAllUsers);
+            .then(findAllUsers);
     }
 
-    // /**
-    //  * Called whenever the list of users needs to be refreshed. Uses user service findAllUsers() to retrieve all
-    //  * the users and passes response to renderUsers
-    //  */
-    // function findAllUsers() {
-    //     userService
-    //         .findAllUsers()
-    //         .then(renderUsers)
-    // }
+    /**
+     * Called whenever the list of users needs to be refreshed. Uses user service findAllUsers() to retrieve all
+     * the users and passes response to renderUsers
+     */
+    function findAllUsers() {
+        userService
+            .findAllUsers()
+            .then(renderUsers)
+    }
 
     // /**
     //  * Called whenever a particular user needs to be retrieved by their id, as in when a user is selected for editing.
@@ -100,26 +101,32 @@
      */
     // function renderUser(user) { … }
 
-    // /**
-    //  *
-    //  * Accepts an array of user instances, clears the current content of the table body, iterates over the array of
-    //  * users, clones a table row template for each user instance, populates the table row with the user object properties,
-    //  * adds the table row to the table body
-    //  * @param users
-    //  */
-    // function renderUsers(users) {
-    //     $tbody.empty();
-    //     for(var i = 0; i < users.length; i++){
-    //         var user = users[i];
-    //         var clone = $userRowTemplate.clone();
-    //
-    //         clone.attr('id', user.id);
-    //
-    //         clone.find('.wbdv-remove').click(deleteUser);
-    //         clone.find('.wbdv-edit').click(editUser);
-    //         clone.find('.usernameFld')
-    //             .html(user.username);
-    //         $tbody.append(clone);
-    //     }
-    // }
+    /**
+     *
+     * Accepts an array of user instances, clears the current content of the table body, iterates over the array of
+     * users, clones a table row template for each user instance, populates the table row with the user object properties,
+     * adds the table row to the table body
+     * @param users
+     */
+    function renderUsers(users) {
+        $tbody.empty();
+        for(var i = 0; i < users.length; i++){
+            var user = users[i];
+            var clone = $userRowTemplate.clone();
+
+            clone.attr('id', user.id);
+
+            // clone.find('.wbdv-remove').click(deleteUser);
+            // clone.find('.wbdv-edit').click(updateUser);
+            clone.find('.wbdv-username')
+                .html(user.username);
+            clone.find('.wbdv-first-name')
+                .html(user.firstName);
+            clone.find('.wbdv-last-name')
+                .html(user.lastName);
+            clone.find('.wbdv-role')
+                .html(user.role);
+            $tbody.append(clone);
+        }
+    }
 })();
