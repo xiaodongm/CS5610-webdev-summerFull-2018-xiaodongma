@@ -46,17 +46,17 @@ function User(username, password, firstName, lastName, role, email, phone, dateO
 	}
 
 	function setFirstName(firstname) {
-		this.firstname = firstname;
+		this.firstName = firstname;
 	}
 	function getFirstName() {
-		return this.firstname;
+		return this.firstName;
 	}
 	
 	function setLastName(lastname) {
-		this.lastname = lastname;
+		this.lastName = lastname;
 	}
 	function getLastName() {
-		return this.lastname;
+		return this.lastName;
 	}
 	
 	function setRole(role) {

@@ -4,8 +4,7 @@
  * create user, find all users, find user by id, update user, and delete user.
  */
 (function () {
-    var $usernameFld, $passwordFld;
-    var $emailFld, $phoneFld, $dateOfBirthFld;
+    var $usernameFld, $passwordFld, $roleFld;
     var $removeBtn, $editBtn, $createBtn;
     var $firstNameFld, $lastNameFld;
     var $userRowTemplate, $tbody;
@@ -22,7 +21,7 @@
         $userRowTemplate = $('.wbdv-template');
         $createBtn = $('.wbdv-create');
         $createBtn.click(createUser);
-        findAllUsers();
+        //findAllUsers();
     }
 
     /**
@@ -34,71 +33,66 @@
         $passwordFld = $('#passwordFld').val();
         $firstNameFld = $('#firstNameFld').val();
         $lastNameFld = $('#lastNameFld').val();
-        $emailFld = $('#emailFld').val();
-        $phoneFld = $('#phoneFld').val();
-        $dateOfBirthFld = $('#dateOfBirthFld').val();
+        $roleFld = $('#roleFld').val();
 
         var user = {
             username: $usernameFld,
             password: $passwordFld,
             firstName: $firstNameFld,
             lastName: $lastNameFld,
-            email: $emailFld,
-            phone: $phoneFld,
-            dateOfBirth: $dateOfBirthFld
         };
 
         userService
             .createUser(user)
-            .then(findAllUsers);
+            //.then(findAllUsers);
     }
 
-    /**
-     * Called whenever the list of users needs to be refreshed. Uses user service findAllUsers() to retrieve all
-     * the users and passes response to renderUsers
-     */
-    function findAllUsers() {
-        userService
-            .findAllUsers()
-            .then(renderUsers)
-    }
+    // /**
+    //  * Called whenever the list of users needs to be refreshed. Uses user service findAllUsers() to retrieve all
+    //  * the users and passes response to renderUsers
+    //  */
+    // function findAllUsers() {
+    //     userService
+    //         .findAllUsers()
+    //         .then(renderUsers)
+    // }
 
-    /**
-     * Called whenever a particular user needs to be retrieved by their id, as in when a user is selected for editing.
-     * Reads the user is from the icon id attribute. Uses user service findUserById() to retrieve user and then updates
-     * the form on server response
-     */
-    function findUserById() {
-        userService
-            .findUserById()
-            .then(renderUsers)
-    }
+    // /**
+    //  * Called whenever a particular user needs to be retrieved by their id, as in when a user is selected for editing.
+    //  * Reads the user is from the icon id attribute. Uses user service findUserById() to retrieve user and then updates
+    //  * the form on server response
+    //  */
+    // function findUserById() {
+    //     userService
+    //         .findUserById()
+    //         .then(renderUsers)
+    // }
 
-    /**
-     * Handles delete user event when user clicks the cross icon. Reads the user is from the icon id attribute.
-     * Uses user service deleteUser() to send a delete request to the server. Updates user list on server response
-     */
-    function deleteUser() {
-        $removeBtn = $(event.currentTarget);
-        var userId = $removeBtn
-            .parent()
-            .parent()
-            .attr('id');
-        userService
-            .deleteUser(userId)
-            .then(findAllUsers);
-    }
+    // /**
+    //  * Handles delete user event when user clicks the cross icon. Reads the user is from the icon id attribute.
+    //  * Uses user service deleteUser() to send a delete request to the server. Updates user list on server response
+    //  */
+    // function deleteUser() {
+    //     $removeBtn = $(event.currentTarget);
+    //     var userId = $removeBtn
+    //         .parent()
+    //         .parent()
+    //         .attr('id');
+    //     userService
+    //         .deleteUser(userId)
+    //         .then(findAllUsers);
+    // }
 
-    /**
-     * Handles update user event when user clicks on check mark icon. Reads the user is from the icon id attribute.
-     * Reads new user values form the form, creates a user object and then uses user service updateUser() to send
-     * the new user data to server. Updates user list on server response
-     */
-    function updateUser() {
-        userService
-            .updateUser()
-            .then(renderUsers)
-    }
+    // /**
+    //  * Handles update user event when user clicks on check mark icon. Reads the user is from the icon id attribute.
+    //  * Reads new user values form the form, creates a user object and then uses user service updateUser() to send
+    //  * the new user data to server. Updates user list on server response
+    //  */
+    // function updateUser() {
+    //     userService
+    //         .updateUser()
+    //         .then(renderUsers)
+    // }
 
     /**
      * Accepts a user object as parameter and updates the form with the user properties
@@ -106,26 +100,26 @@
      */
     // function renderUser(user) { … }
 
-    /**
-     *
-     * Accepts an array of user instances, clears the current content of the table body, iterates over the array of
-     * users, clones a table row template for each user instance, populates the table row with the user object properties,
-     * adds the table row to the table body
-     * @param users
-     */
-    function renderUsers(users) {
-        $tbody.empty();
-        for(var i = 0; i < users.length; i++){
-            var user = users[i];
-            var clone = $userRowTemplate.clone();
-
-            clone.attr('id', user.id);
-
-            clone.find('.wbdv-remove').click(deleteUser);
-            clone.find('.wbdv-edit').click(editUser);
-            clone.find('.usernameFld')
-                .html(user.username);
-            $tbody.append(clone);
-        }
-    }
+    // /**
+    //  *
+    //  * Accepts an array of user instances, clears the current content of the table body, iterates over the array of
+    //  * users, clones a table row template for each user instance, populates the table row with the user object properties,
+    //  * adds the table row to the table body
+    //  * @param users
+    //  */
+    // function renderUsers(users) {
+    //     $tbody.empty();
+    //     for(var i = 0; i < users.length; i++){
+    //         var user = users[i];
+    //         var clone = $userRowTemplate.clone();
+    //
+    //         clone.attr('id', user.id);
+    //
+    //         clone.find('.wbdv-remove').click(deleteUser);
+    //         clone.find('.wbdv-edit').click(editUser);
+    //         clone.find('.usernameFld')
+    //             .html(user.username);
+    //         $tbody.append(clone);
+    //     }
+    // }
 })();
