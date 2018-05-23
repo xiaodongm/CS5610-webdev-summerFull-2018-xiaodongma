@@ -58,16 +58,16 @@
             .then(renderUsers)
     }
 
-    // /**
-    //  * Called whenever a particular user needs to be retrieved by their id, as in when a user is selected for editing.
-    //  * Reads the user is from the icon id attribute. Uses user service findUserById() to retrieve user and then updates
-    //  * the form on server response
-    //  */
-    // function findUserById() {
-    //     userService
-    //         .findUserById()
-    //         .then(renderUsers)
-    // }
+    /**
+     * Called whenever a particular user needs to be retrieved by their id, as in when a user is selected for editing.
+     * Reads the user is from the icon id attribute. Uses user service findUserById() to retrieve user and then updates
+     * the form on server response
+     */
+    function findUserById() {
+        userService
+            .findUserById()
+            .then(renderUsers)
+    }
 
     /**
      * Handles delete user event when user clicks the cross icon. Reads the user is from the icon id attribute.
@@ -86,6 +86,23 @@
     }
 
     // /**
+    //  * Handles select user event when user clicks on the pen icon.
+    //  * Select a user for update.
+    //  */
+    // function selectUser() {
+    //     $editBtn = $(event.currentTarget);
+    //     var userId = $editBtn
+    //         .parent()
+    //         .parent()
+    //         .parent()
+    //         .attr('id');
+    //     userService
+    //         .updateUser()
+    //         .then(findAllUsers)
+    // }
+    //
+    //
+    // /**
     //  * Handles update user event when user clicks on check mark icon. Reads the user is from the icon id attribute.
     //  * Reads new user values form the form, creates a user object and then uses user service updateUser() to send
     //  * the new user data to server. Updates user list on server response
@@ -100,7 +117,13 @@
      * Accepts a user object as parameter and updates the form with the user properties
      * @param users
      */
-    // function renderUser(user) { … }
+    function renderUser(user) {
+        $('#usernameFld').val(user.username);
+        $('#passwordFld').val(user.password);
+        $('#firstNameFld').val(user.firstName);
+        $('#lastNameFld').val(user.lastName);
+        $('#roleFld').val(user.role);
+    }
 
     /**
      *
@@ -118,7 +141,7 @@
             clone.attr('id', user.id);
 
             clone.find('.wbdv-remove').click(deleteUser);
-            // clone.find('.wbdv-edit').click(updateUser);
+            // clone.find('.wbdv-edit').click(selectUser);
             clone.find('.wbdv-username')
                 .html(user.username);
             clone.find('.wbdv-first-name')
