@@ -69,20 +69,21 @@
     //         .then(renderUsers)
     // }
 
-    // /**
-    //  * Handles delete user event when user clicks the cross icon. Reads the user is from the icon id attribute.
-    //  * Uses user service deleteUser() to send a delete request to the server. Updates user list on server response
-    //  */
-    // function deleteUser() {
-    //     $removeBtn = $(event.currentTarget);
-    //     var userId = $removeBtn
-    //         .parent()
-    //         .parent()
-    //         .attr('id');
-    //     userService
-    //         .deleteUser(userId)
-    //         .then(findAllUsers);
-    // }
+    /**
+     * Handles delete user event when user clicks the cross icon. Reads the user is from the icon id attribute.
+     * Uses user service deleteUser() to send a delete request to the server. Updates user list on server response
+     */
+    function deleteUser() {
+        $removeBtn = $(event.currentTarget);
+        var userId = $removeBtn
+            .parent()
+            .parent()
+            .parent()
+            .attr('id');
+        userService
+            .deleteUser(userId)
+            .then(findAllUsers);
+    }
 
     // /**
     //  * Handles update user event when user clicks on check mark icon. Reads the user is from the icon id attribute.
@@ -116,7 +117,7 @@
 
             clone.attr('id', user.id);
 
-            // clone.find('.wbdv-remove').click(deleteUser);
+            clone.find('.wbdv-remove').click(deleteUser);
             // clone.find('.wbdv-edit').click(updateUser);
             clone.find('.wbdv-username')
                 .html(user.username);
