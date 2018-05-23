@@ -2,7 +2,7 @@
  * This file contains User class implements the user data model 
  * including properties that describe all users
  */
-package webdev.models;
+package com.example.webdevsummerFull2018xma.models;
 
 import java.util.Date;
 import javax.persistence.*;

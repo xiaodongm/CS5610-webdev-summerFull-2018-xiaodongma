@@ -9,7 +9,7 @@
     var $removeBtn, $editBtn, $createBtn;
     var $firstNameFld, $lastNameFld;
     var $userRowTemplate, $tbody;
-    var userService = new AdminUserServiceClient();
+    var userService = new UserServiceClient();
     $(main);
 
     /**
@@ -38,13 +38,13 @@
         $dateOfBirthFld = $('#dateOfBirthFld').val();
 
         var user = {
-            username: username,
-            password: password,
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            phone: phone,
-            dob: dob
+            username: $usernameFld,
+            password: $passwordFld,
+            firstName: $firstNameFld,
+            lastName: $lastNameFld,
+            email: $emailFld,
+            phone: $phoneFld,
+            dateOfBirth: $dateOfBirthFld
         };
 
         userService
@@ -113,18 +113,18 @@
      * @param users
      */
     function renderUsers(users) {
-        tbody.empty();
+        $tbody.empty();
         for(var i = 0; i < users.length; i++){
             var user = users[i];
             var clone = userRowTemplate.clone();
 
             clone.attr('id', user.id);
 
-            clone.find('.delete').click(deleteUser);
-            clone.find('.edit').click(editUser);
-            clone.find('.username')
+            clone.find('.wbdv-remove').click(deleteUser);
+            clone.find('.wbdv-edit').click(editUser);
+            clone.find('.usernameFld')
                 .html(user.username);
-            tbody.append(clone);
+            $tbody.append(clone);
         }
     }
 })();

@@ -3,7 +3,7 @@
  * The Web service endpoints expose the URL patterns and actions needed to support the user
  * admin client application
  */
-package webdev.services;
+package com.example.webdevsummerFull2018xma.services;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import webdev.repositories.UserRepository;
-import webdev.models.User;
+import com.example.webdevsummerFull2018xma.models.User;
+import com.example.webdevsummerFull2018xma.repositoies.UserRepository;
 
 @RestController
 public class UserService {
