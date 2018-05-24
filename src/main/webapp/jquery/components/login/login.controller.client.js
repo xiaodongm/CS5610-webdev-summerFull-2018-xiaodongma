@@ -15,7 +15,7 @@
         $usernameFld = $('#username').val();
         $passwordFld = $('#password').val();
 
-        var user = new User($usernameFld, $passwordFld);
+        var user = new User($usernameFld, $passwordFld, null, null, null, null, null, null);
         userService.login(user).then(function (response) {
             if(response.ok){
                 window.location.href='http://localhost:8080/jquery/components/profile/profile.template.client.html';

@@ -10,6 +10,8 @@ function UserServiceClient() {
     this.register = register;
     this.login = login;
     this.getUserInfo = getUserInfo;
+    this.updateProfile = updateProfile;
+    this.logout = logout;
     this.url = 'http://localhost:8080/api/user';
     this.registerUrl = 'http://localhost:8080/api/register';
     this.loginUrl = 'http://localhost:8080/api/login';
@@ -138,8 +140,19 @@ function UserServiceClient() {
     /**
      * update a user's profile
      */
-    function updateProfile() {
-
+    function updateProfile(user) {
+        console.log('abcdfasfs');
+        return fetch(self.profileUrl, {
+            credentials: 'same-origin',
+            method: 'put',
+            body: JSON.stringify(user),
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+            .then(function (response) {
+                return response.json();
+            });
     }
 
     /**

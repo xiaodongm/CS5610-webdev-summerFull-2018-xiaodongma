@@ -111,7 +111,7 @@
         $lastNameFld = $('#lastNameFld').val();
         $roleFld = $('#roleFld').val();
 
-        var user = new User($usernameFld, $passwordFld, $firstNameFld, $lastNameFld, $roleFld);
+        var user = new User($usernameFld, $passwordFld, $firstNameFld, $lastNameFld, $roleFld, null, null, null);
         userService
             .updateUser($userId, user)
             .then(findAllUsers);

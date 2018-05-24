@@ -19,10 +19,9 @@
         if($passwordFld !== $verifyPasswordFld){
             alert('Password not match');
         }
-        var user = new User($usernameFld, $passwordFld);
+        var user = new User($usernameFld, $passwordFld, null, null, null, null, null, null);
         userService.register(user).then(function (response) {
             if(response.ok){
-                alert('User registered Successfully');
                 window.location.href='http://localhost:8080/jquery/components/profile/profile.template.client.html';
             }else{
                 alert('Can not register');

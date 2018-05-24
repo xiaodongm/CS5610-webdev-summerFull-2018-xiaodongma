@@ -11,28 +11,32 @@
     $(main);
 
     function main() {
-        $usernameFld = $('#username');
+        // $usernameFld = $('#username');
         $firstnameFld = $('#firstname');
         $lastnameFld = $('#lastname');
         $phoneFld = $('#phone');
         $emailFld = $('#email');
         $roleFld = $('#role');
         $dateOfBirthFld = $('#dateOfBirth');
-        // $updateBtn = $('#updateBtn');
-        // $updateBtn.click(updateProfile);
+        $updateBtn = $('#updateBtn');
+        $updateBtn.click(updateProfile);
         // $logoutBtn = $('#loginBtn');
         // $logoutBtn.click(logout);
         getUserInfo();
     }
     
     function renderUserInfo(user) {
-        $usernameFld.val(user.username);
+        // $usernameFld.val(user.username);
         $firstnameFld.val(user.firstName);
         $lastnameFld.val(user.lastName);
         $phoneFld.val(user.phone);
         $emailFld.val(user.email);
         $roleFld.val(user.role);
-        $dateOfBirthFld.val(user.dateOfBirth);
+        var date;
+        if(user.dateOfBirth != null){
+            date = user.dateOfBirth.split('T')[0];
+        }
+        $dateOfBirthFld.val(date);
     }
     
     function getUserInfo() {
@@ -42,6 +46,14 @@
                 renderUserInfo(response);
             })
     }
-    // function updateProfile() { … }
+    function updateProfile() {
+        var user = new User(null, null, $firstnameFld.val(), $lastnameFld.val(), $roleFld.val(), $emailFld.val(),
+            $phoneFld.val(), $dateOfBirthFld.val());
+
+        console.log(user);
+        userService.updateProfile(user).then(function (response) {
+            renderUserInfo(response);
+        })
+    }
     // function logout() { … }
 })();
