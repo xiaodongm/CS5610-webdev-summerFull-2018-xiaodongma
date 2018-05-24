@@ -9,12 +9,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import webdev.models.User;
@@ -35,10 +37,10 @@ public class UserService {
 		return repository.save(user);
 	}
 
-	@PostMapping("/api/login")
-	public List<User> login(@RequestBody User user) {
-		return (List<User>) repository.findUserByCredentials(user.getUsername(), user.getPassword());
-	}
+//	@PostMapping("/api/login")
+//	public List<User> login(@RequestBody User user) {
+//		return (List<User>) repository.findUserByCredentials(user.getUsername(), user.getPassword());
+//	}
 
 	@GetMapping("/api/user")
 	public List<User> findAllUsers() {
@@ -69,4 +71,18 @@ public class UserService {
 		}
 		return null;
 	}
+	
+	@GetMapping("/api/user")	
+	public Iterable<User> findAllUsers(@RequestParam(name="username", required=false) String username) {
+		if(username != null) {
+			return repository.findUserByUsername(username);
+		}
+		return repository.findAll();
+	}
+	
+	@GetMapping("/api/user")
+	public Iterable<User> findUserByUsername(@RequestParam(name="username", required=false) String username){
+		return repository.findUserByUsername(username);
+	}
+
 }
