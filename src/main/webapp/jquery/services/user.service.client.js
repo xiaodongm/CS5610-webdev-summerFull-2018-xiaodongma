@@ -117,4 +117,18 @@ function UserServiceClient() {
         })
     }
 
+    /**
+     * update a user's profile
+     */
+    function updateProfile() {
+
+    }
+
+    /**
+     * logout a user
+     */
+    function logout() {
+
+    }
+
 }
