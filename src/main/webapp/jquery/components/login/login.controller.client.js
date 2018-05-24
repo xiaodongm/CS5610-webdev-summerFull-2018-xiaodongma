@@ -4,9 +4,25 @@
 (function () {
     var $usernameFld, $passwordFld;
     var $loginBtn;
-    var userService = new AdminUserServiceClient();
+    var userService = new UserServiceClient();
     $(main);
 
-    // function main() { … }
-    // function login() { … }
+    function main() {
+        $loginBtn = $('#loginBtn');
+        $loginBtn.click(login);
+    }
+    function login() {
+        $usernameFld = $('#username').val();
+        $passwordFld = $('#password').val();
+
+        var user = new User($usernameFld, $passwordFld);
+        userService.login(user).then(function (response) {
+            if(response.ok){
+                alert('Login Successfully');
+            }else{
+                alert('Login Failed');
+            }
+        })
+    }
+
 })();

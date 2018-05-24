@@ -100,11 +100,15 @@ public class UserService {
 		return repository.findUserByCredentials(username, password);
 	}
 	
-	
-	
 	@PostMapping("/api/login")
-	public User login(@RequestBody User user, HttpSession session) {
-		return repository.findUserByCredentials(user.getUsername(), user.getPassword());
+	public User login(@RequestBody User user, HttpSession session) throws Exception {
+		List<User> users = (List<User>) repository.findUserByCredentials(user.getUsername(), user.getPassword());
+		if(users.size() != 0) {
+			session.setAttribute("user", users.get(0));
+			return (User) session.getAttribute("user");
+		}else {
+			throw new Exception("User not exsit");
+		}
 	}
 
 
