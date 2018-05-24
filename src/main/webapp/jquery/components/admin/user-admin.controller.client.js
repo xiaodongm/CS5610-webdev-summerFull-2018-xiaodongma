@@ -5,7 +5,7 @@
  */
 (function () {
     var $usernameFld, $passwordFld, $roleFld;
-    var $removeBtn, $editBtn, $createBtn;
+    var $removeBtn, $editBtn, $createBtn, $userId;
     var $firstNameFld, $lastNameFld;
     var $userRowTemplate, $tbody;
     var userService = new UserServiceClient();
@@ -64,9 +64,8 @@
      * the form on server response
      */
     function findUserById() {
-        userService
-            .findUserById()
-            .then(renderUsers)
+        return userService
+            .findUserById($userId)
     }
 
     /**
@@ -75,13 +74,13 @@
      */
     function deleteUser() {
         $removeBtn = $(event.currentTarget);
-        var userId = $removeBtn
+        $userId = $removeBtn
             .parent()
             .parent()
             .parent()
             .attr('id');
         userService
-            .deleteUser(userId)
+            .deleteUser($userId)
             .then(findAllUsers);
     }
 
@@ -91,14 +90,13 @@
     //  */
     // function selectUser() {
     //     $editBtn = $(event.currentTarget);
-    //     var userId = $editBtn
+    //     $userId = $editBtn
     //         .parent()
     //         .parent()
     //         .parent()
     //         .attr('id');
-    //     userService
-    //         .updateUser()
-    //         .then(findAllUsers)
+    //     findUserById($userId)
+    //         .then(renderUser);
     // }
     //
     //
