@@ -18,7 +18,7 @@
         var user = new User($usernameFld, $passwordFld);
         userService.login(user).then(function (response) {
             if(response.ok){
-                alert('Login Successfully');
+                window.location.href='http://localhost:8080/jquery/components/profile/profile.template.client.html';
             }else{
                 alert('Login Failed');
             }

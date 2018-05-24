@@ -9,9 +9,11 @@ function UserServiceClient() {
     this.updateUser = updateUser;
     this.register = register;
     this.login = login;
+    this.getUserInfo = getUserInfo;
     this.url = 'http://localhost:8080/api/user';
     this.registerUrl = 'http://localhost:8080/api/register';
     this.loginUrl = 'http://localhost:8080/api/login';
+    this.profileUrl = 'http://localhost:8080/api/profile';
     var self = this;
 
     /**
@@ -115,6 +117,22 @@ function UserServiceClient() {
         }).then(function (response) {
             return response;
         })
+    }
+
+    /**
+     * get a user's info
+     */
+    function getUserInfo() {
+        return fetch(self.profileUrl,{
+            credentials: 'same-origin',
+            headers: {
+                'content-type': 'application/json'
+            }
+        }).then(function (response) {
+            return response.json().then(function (result) {
+                return result;
+            })
+        });
     }
 
     /**

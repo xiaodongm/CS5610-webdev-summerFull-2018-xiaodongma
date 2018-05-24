@@ -23,6 +23,7 @@
         userService.register(user).then(function (response) {
             if(response.ok){
                 alert('User registered Successfully');
+                window.location.href='http://localhost:8080/jquery/components/profile/profile.template.client.html';
             }else{
                 alert('Can not register');
             }
