@@ -102,18 +102,19 @@
      * Reads new user values form the form, creates a user object and then uses user service updateUser() to send
      * the new user data to server. Updates user list on server response
      */
-    // function updateUser() {
-    //     $usernameFld = $('#usernameFld').val();
-    //     $passwordFld = $('#passwordFld').val();
-    //     $firstNameFld = $('#firstNameFld').val();
-    //     $lastNameFld = $('#lastNameFld').val();
-    //     $roleFld = $('#roleFld').val();
-    //
-    //     var user = new User($usernameFld, $passwordFld, $firstNameFld, $lastNameFld, $roleFld);
-    //     userService
-    //         .updateUser($userId, user)
-    //         .then(findAllUsers);
-    // }
+    function updateUser() {
+        $usernameFld = $('#usernameFld').val();
+        $passwordFld = $('#passwordFld').val();
+        $firstNameFld = $('#firstNameFld').val();
+        $lastNameFld = $('#lastNameFld').val();
+        $roleFld = $('#roleFld').val();
+
+        var user = new User($usernameFld, $passwordFld, $firstNameFld, $lastNameFld, $roleFld);
+        userService
+            .updateUser($userId, user)
+            .then(findAllUsers);
+        $userId = -1;
+    }
 
     /**
      * Accepts a user object as parameter and updates the form with the user properties
