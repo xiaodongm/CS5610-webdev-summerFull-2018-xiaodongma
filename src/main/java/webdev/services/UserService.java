@@ -39,11 +39,6 @@ public class UserService {
 		return repository.save(user);
 	}
 
-//	@PostMapping("/api/login")
-//	public List<User> login(@RequestBody User user) {
-//		return (List<User>) repository.findUserByCredentials(user.getUsername(), user.getPassword());
-//	}
-
 	@PutMapping("/api/user/{userId}")
 	public User updateUser(@PathVariable("userId") int userId, @RequestBody User newUser) {
 		Optional<User> data = repository.findById(userId);
@@ -70,14 +65,18 @@ public class UserService {
 	}
 	
 	@GetMapping("/api/user")	
-	public Iterable<User> findAllUsers(@RequestParam(name="username", required=false) String username) {
-		if(username != null) {
+	public Iterable<User> findAllUsers(@RequestParam(name="username", required=false) String username,
+										@RequestParam(name="password", required=false) String password) {
+		if(username != null && password != null) {
+			return repository.findUserByCredentials(username, password);
+		}
+		else if(username != null) {
 			return repository.findUserByUsername(username);
 		}
 		return repository.findAll();
 	}
 	
-	@GetMapping("/api/user/username")
+	@GetMapping("/api/user/findByUsername")
 	public List<User> findUserByUsername(@RequestParam(name="username", required=true) String username){
 		return (List<User>) repository.findUserByUsername(username);
 	}
@@ -93,6 +92,19 @@ public class UserService {
 		}else {
 			throw new Exception("Can not register");
 		}
+	}
+	
+	@GetMapping("/api/user/findByCredential")
+	Iterable<User> findUserByCredentials(@RequestParam(name="username", required=true) String username,
+										@RequestParam(name="password", required=true) String password){
+		return repository.findUserByCredentials(username, password);
+	}
+	
+	
+	
+	@PostMapping("/api/login")
+	public User login(@RequestBody User user, HttpSession session) {
+		return repository.findUserByCredentials(user.getUsername(), user.getPassword());
 	}
 
 
