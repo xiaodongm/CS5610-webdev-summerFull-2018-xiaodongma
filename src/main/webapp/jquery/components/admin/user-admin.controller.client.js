@@ -84,22 +84,22 @@
             .then(findAllUsers);
     }
 
-    // /**
-    //  * Handles select user event when user clicks on the pen icon.
-    //  * Select a user for update.
-    //  */
-    // function selectUser() {
-    //     $editBtn = $(event.currentTarget);
-    //     $userId = $editBtn
-    //         .parent()
-    //         .parent()
-    //         .parent()
-    //         .attr('id');
-    //     findUserById($userId)
-    //         .then(renderUser);
-    // }
-    //
-    //
+    /**
+     * Handles select user event when user clicks on the pen icon.
+     * Select a user for update.
+     */
+    function selectUser() {
+        $editBtn = $(event.currentTarget);
+        $userId = $editBtn
+            .parent()
+            .parent()
+            .parent()
+            .attr('id');
+        findUserById($userId)
+            .then(renderUser);
+    }
+
+
     // /**
     //  * Handles update user event when user clicks on check mark icon. Reads the user is from the icon id attribute.
     //  * Reads new user values form the form, creates a user object and then uses user service updateUser() to send
@@ -139,7 +139,7 @@
             clone.attr('id', user.id);
 
             clone.find('.wbdv-remove').click(deleteUser);
-            // clone.find('.wbdv-edit').click(selectUser);
+            clone.find('.wbdv-edit').click(selectUser);
             clone.find('.wbdv-username')
                 .html(user.username);
             clone.find('.wbdv-first-name')
