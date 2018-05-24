@@ -5,9 +5,27 @@
 (function () {
     var $usernameFld, $passwordFld, $verifyPasswordFld;
     var $registerBtn;
-    var userService = new UserService();
+    var userService = new UserServiceClient();
     $(main);
 
-    // function main() { … }
-    // function register() { … }
+    function main() {
+        $registerBtn = $('#register');
+        $registerBtn.click(register);
+    }
+    function register() {
+        $usernameFld = $('#username').val();
+        $passwordFld = $('#password').val();
+        $verifyPasswordFld = $('#verifyPassword').val();
+        if($passwordFld !== $verifyPasswordFld){
+            alert('Password not match');
+        }
+        var user = new User($usernameFld, $passwordFld);
+        userService.register(user).then(function (response) {
+            if(response.ok){
+                alert('User registered Successfully');
+            }else{
+                alert('Can not register');
+            }
+        })
+    }
 })();

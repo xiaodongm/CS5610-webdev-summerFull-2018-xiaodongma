@@ -7,7 +7,9 @@ function UserServiceClient() {
     this.findUserById = findUserById;
     this.deleteUser = deleteUser;
     this.updateUser = updateUser;
+    this.register = register;
     this.url = 'http://localhost:8080/api/user';
+    this.registerUrl = 'http://localhost:8080/api/register';
     var self = this;
 
     /**
@@ -82,13 +84,19 @@ function UserServiceClient() {
     }
 
     /**
-     *
+     * register a user if user not already registered
      */
-    function UserService() {
-        this.register = register;
-        function register() {
-
-        }
+    function register(user) {
+        return fetch(self.registerUrl, {
+            credentials: 'same-origin',
+            method: 'post',
+            body: JSON.stringify(user),
+            headers: {
+                'content-type': 'application/json'
+            }
+        }).then(function (response) {
+            return response;
+        })
     }
 
 }

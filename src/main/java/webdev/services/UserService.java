@@ -85,7 +85,8 @@ public class UserService {
 
 	@PostMapping("/api/register")
 	public User register(@RequestBody User user, HttpSession session) throws Exception { 
-		if(repository.findUserByUsername(user.getUsername()) == null) {
+		List<User> users = (List<User>) repository.findUserByUsername(user.getUsername());
+		if(users.size() == 0) {
 			createUser(user);
 			session.setAttribute("user", user);
 			return (User) session.getAttribute("user");

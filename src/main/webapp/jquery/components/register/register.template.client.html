@@ -5,6 +5,14 @@
     <link
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
         rel="stylesheet" />
+
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script src="../../models/user.model.client.js/?version=1"></script>
+    <script src="../../services/user.service.client.js/?version=10"></script>
+    <script src="register.controller.client.js/?version=5"></script>
     <title>User Sign Up</title>
 </head>
 <body>
@@ -38,7 +46,7 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label"></label>
             <div class="col-sm-10">
-                <button class="btn btn-primary btn-block">Sign up</button>
+                <button type="button" id="register" class="btn btn-primary btn-block">Sign up</button>
                 <div class="row">
                     <div class="col-6">
                         <a href="#">Login</a>
