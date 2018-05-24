@@ -8,6 +8,7 @@ function UserServiceClient() {
     this.deleteUser = deleteUser;
     this.updateUser = updateUser;
     this.register = register;
+    this.login = login;
     this.url = 'http://localhost:8080/api/user';
     this.registerUrl = 'http://localhost:8080/api/register';
     var self = this;
@@ -97,6 +98,13 @@ function UserServiceClient() {
         }).then(function (response) {
             return response;
         })
+    }
+
+    /**
+     * login a registered user
+     */
+    function login() {
+
     }
 
 }
