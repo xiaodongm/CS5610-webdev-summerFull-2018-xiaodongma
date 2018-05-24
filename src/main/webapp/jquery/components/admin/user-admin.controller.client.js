@@ -42,6 +42,7 @@
         userService
             .createUser(user)
             .then(findAllUsers);
+        alert('Create User Successful');
     }
 
     /**
@@ -79,6 +80,7 @@
             .deleteUser($userId)
             .then(findAllUsers);
         $userId = -1;
+        alert('Delete User Successful');
     }
 
     /**
@@ -114,6 +116,7 @@
             .updateUser($userId, user)
             .then(findAllUsers);
         $userId = -1;
+        alert('Update User Successful');
     }
 
     /**
