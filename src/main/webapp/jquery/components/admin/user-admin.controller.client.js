@@ -5,7 +5,7 @@
  */
 (function () {
     var $usernameFld, $passwordFld, $roleFld;
-    var $removeBtn, $editBtn, $createBtn, $userId;
+    var $removeBtn, $editBtn, $createBtn, $updateBtn, $userId;
     var $firstNameFld, $lastNameFld;
     var $userRowTemplate, $tbody;
     var userService = new UserServiceClient();
@@ -21,6 +21,8 @@
         $userRowTemplate = $('.wbdv-template');
         $createBtn = $('.wbdv-create');
         $createBtn.click(createUser);
+        $updateBtn = $('.wbdv-update');
+        $updateBtn.click(updateUser);
         findAllUsers();
     }
 
@@ -35,13 +37,7 @@
         $lastNameFld = $('#lastNameFld').val();
         $roleFld = $('#roleFld').val();
 
-        var user = {
-            username: $usernameFld,
-            password: $passwordFld,
-            firstName: $firstNameFld,
-            lastName: $lastNameFld,
-            role: $roleFld
-        };
+        var user = new User($usernameFld, $passwordFld, $firstNameFld, $lastNameFld, $roleFld);
 
         userService
             .createUser(user)
@@ -82,6 +78,7 @@
         userService
             .deleteUser($userId)
             .then(findAllUsers);
+        $userId = -1;
     }
 
     /**
@@ -100,15 +97,22 @@
     }
 
 
-    // /**
-    //  * Handles update user event when user clicks on check mark icon. Reads the user is from the icon id attribute.
-    //  * Reads new user values form the form, creates a user object and then uses user service updateUser() to send
-    //  * the new user data to server. Updates user list on server response
-    //  */
+    /**
+     * Handles update user event when user clicks on check mark icon. Reads the user is from the icon id attribute.
+     * Reads new user values form the form, creates a user object and then uses user service updateUser() to send
+     * the new user data to server. Updates user list on server response
+     */
     // function updateUser() {
+    //     $usernameFld = $('#usernameFld').val();
+    //     $passwordFld = $('#passwordFld').val();
+    //     $firstNameFld = $('#firstNameFld').val();
+    //     $lastNameFld = $('#lastNameFld').val();
+    //     $roleFld = $('#roleFld').val();
+    //
+    //     var user = new User($usernameFld, $passwordFld, $firstNameFld, $lastNameFld, $roleFld);
     //     userService
-    //         .updateUser()
-    //         .then(renderUsers)
+    //         .updateUser($userId, user)
+    //         .then(findAllUsers);
     // }
 
     /**
@@ -140,6 +144,7 @@
 
             clone.find('.wbdv-remove').click(deleteUser);
             clone.find('.wbdv-edit').click(selectUser);
+
             clone.find('.wbdv-username')
                 .html(user.username);
             clone.find('.wbdv-first-name')
