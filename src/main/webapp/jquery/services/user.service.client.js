@@ -80,4 +80,15 @@ function UserServiceClient() {
             method: 'delete'
         })
     }
+
+    /**
+     *
+     */
+    function UserService() {
+        this.register = register;
+        function register() {
+
+        }
+    }
+
 }
