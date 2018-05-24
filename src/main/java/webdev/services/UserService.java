@@ -8,6 +8,8 @@ package webdev.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -42,11 +44,6 @@ public class UserService {
 //		return (List<User>) repository.findUserByCredentials(user.getUsername(), user.getPassword());
 //	}
 
-	@GetMapping("/api/user")
-	public List<User> findAllUsers() {
-		return (List<User>) repository.findAll();
-	}
-
 	@PutMapping("/api/user/{userId}")
 	public User updateUser(@PathVariable("userId") int userId, @RequestBody User newUser) {
 		Optional<User> data = repository.findById(userId);
@@ -80,9 +77,22 @@ public class UserService {
 		return repository.findAll();
 	}
 	
-	@GetMapping("/api/user")
-	public Iterable<User> findUserByUsername(@RequestParam(name="username", required=false) String username){
-		return repository.findUserByUsername(username);
+	@GetMapping("/api/user/username")
+	public List<User> findUserByUsername(@RequestParam(name="username", required=true) String username){
+		return (List<User>) repository.findUserByUsername(username);
 	}
+	
+
+	@PostMapping("/api/register")
+	public User register(@RequestBody User user, HttpSession session) throws Exception { 
+		if(repository.findUserByUsername(user.getUsername()) == null) {
+			createUser(user);
+			session.setAttribute("user", user);
+			return (User) session.getAttribute("user");
+		}else {
+			throw new Exception("Can not register");
+		}
+	}
+
 
 }
