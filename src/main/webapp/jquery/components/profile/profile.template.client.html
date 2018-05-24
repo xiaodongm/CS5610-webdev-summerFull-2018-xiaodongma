@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+        rel="stylesheet" />
+    <title>Profile</title>
+</head>
+<body>
+
+<div class="container">
+    <h1>Profile</h1>
+    <form>
+        <div class="form-group row">
+            <label for="username" class="col-sm-2 col-form-label">
+                Username </label>
+            <div class="col-sm-10">
+                <input class="form-control" id="username" placeholder="username" readonly>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="firstname" class="col-sm-2 col-form-label">
+                Firstname </label>
+            <div class="col-sm-10">
+                <input class="form-control" id="firstname" placeholder="firstname">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="lastname" class="col-sm-2 col-form-label">
+                Lastname </label>
+            <div class="col-sm-10">
+                <input class="form-control" id="lastname" placeholder="lastname">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="phone" class="col-sm-2 col-form-label">
+                Phone </label>
+            <div class="col-sm-10">
+                <input class="form-control" id="phone" placeholder="(123)456-7890">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="email" class="col-sm-2 col-form-label">
+                Email </label>
+            <div class="col-sm-10">
+                <input class="form-control" id="email" placeholder="email@example.com">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="role" class="col-sm-2 col-form-label">
+                Role </label>
+            <div class="col-sm-10">
+                <select id="role" class="form-control">
+                    <option value="FACULTY">Faculty</option>
+                    <option value="STUDENT">Student</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="dateOfbirth" class="col-sm-2 col-form-label">
+                Date of Birth </label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" id="dateOfbirth">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <button class="btn btn-success btn-block">Update</button>
+                <button class="btn btn-danger btn-block">Logout</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
