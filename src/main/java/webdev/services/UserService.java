@@ -121,7 +121,8 @@ public class UserService {
 	
 	@GetMapping("/api/profile")
 	public User profile(HttpSession session) {
-		User currentUser = (User)session.getAttribute("currentUser");	
+		User currentUser = (User)session.getAttribute("user");
+		System.out.println(currentUser.getUsername() + "*******************************************************");
 		return currentUser;
 	}
 

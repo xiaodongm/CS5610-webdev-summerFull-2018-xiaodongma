@@ -18,10 +18,11 @@
         $emailFld = $('#email');
         $roleFld = $('#role');
         $dateOfBirthFld = $('#dateOfBirth');
-        $updateBtn = $('#updateBtn');
-        $updateBtn.click(updateProfile);
-        $logoutBtn = $('#loginBtn');
-        $logoutBtn.click(logout);
+        // $updateBtn = $('#updateBtn');
+        // $updateBtn.click(updateProfile);
+        // $logoutBtn = $('#loginBtn');
+        // $logoutBtn.click(logout);
+        getUserInfo();
     }
     
     function renderUserInfo(user) {
