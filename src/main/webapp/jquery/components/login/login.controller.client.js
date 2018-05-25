@@ -18,7 +18,7 @@
         var user = new User($usernameFld, $passwordFld, null, null, null, null, null, null);
         userService.login(user).then(function (response) {
             if(response.ok){
-                window.location.href='http://localhost:8080/jquery/components/profile/profile.template.client.html';
+                window.location.href='../profile/profile.template.client.html';
             }else{
                 $('#loginAlert').css('display', 'block');
                 $('#loginAlert').delay(2000).slideUp(200);

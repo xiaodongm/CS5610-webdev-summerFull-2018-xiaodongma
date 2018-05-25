@@ -23,7 +23,7 @@
             var user = new User($usernameFld, $passwordFld, null, null, null, null, null, null);
             userService.register(user).then(function (response) {
                 if(response.ok){
-                    window.location.href='http://localhost:8080/jquery/components/profile/profile.template.client.html';
+                    window.location.href='../profile/profile.template.client.html';
                 }else{
                     $('#signupAlert').css('display', 'block');
                     $('#signupAlert').delay(2000).slideUp(200);
