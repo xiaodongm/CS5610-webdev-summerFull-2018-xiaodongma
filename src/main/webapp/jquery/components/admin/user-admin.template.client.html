@@ -16,14 +16,23 @@
 
 <script src="../../models/user.model.client.js/?version=1"></script>
 <script src="../../services/user.service.client.js/?version=10"></script>
-<script src="user-admin.controller.client.js/?version=14"></script>
-<script src="user-admin.style.client.css"></script>
+<script src="user-admin.controller.client.js/?version=15"></script>
+<script src="user-admin.style.client.css/?version=1"></script>
 
 <title>User Admin</title>
 
 </head>
 <body>
 	<h1>User Admin</h1>
+	<div id="createSuccessAlert" class="alert alert-success" role="alert" style="display: none">
+		Create User Success!
+	</div>
+	<div id="deleteSuccessAlert" class="alert alert-success" role="alert" style="display: none">
+		Delete User Success!
+	</div>
+	<div id="updateSuccessAlert" class="alert alert-success" role="alert" style="display: none">
+		Update User Success!
+	</div>
 	<table class="table">
 		<thead>
 			<tr>

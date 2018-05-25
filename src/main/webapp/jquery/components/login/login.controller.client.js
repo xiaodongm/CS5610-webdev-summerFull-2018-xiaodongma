@@ -20,7 +20,8 @@
             if(response.ok){
                 window.location.href='http://localhost:8080/jquery/components/profile/profile.template.client.html';
             }else{
-                alert('Login Failed');
+                $('#loginAlert').css('display', 'block');
+                $('#loginAlert').delay(2000).slideUp(200);
             }
         })
     }

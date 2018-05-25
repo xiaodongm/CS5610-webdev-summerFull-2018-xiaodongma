@@ -42,7 +42,9 @@
         userService
             .createUser(user)
             .then(findAllUsers);
-        alert('Create User Successful');
+        // alert('Create User Successful');
+        $('#createSuccessAlert').css('display', 'block');
+        $('#createSuccessAlert').delay(2000).slideUp(200);
     }
 
     /**
@@ -80,7 +82,10 @@
             .deleteUser($userId)
             .then(findAllUsers);
         $userId = -1;
-        alert('Delete User Successful');
+        // alert('Delete User Successful');
+        $('#deleteSuccessAlert').css('display', 'block');
+        $('#deleteSuccessAlert').delay(2000).slideUp(200);
+
     }
 
     /**
@@ -116,7 +121,9 @@
             .updateUser($userId, user)
             .then(findAllUsers);
         $userId = -1;
-        alert('Update User Successful');
+        // alert('Update User Successful');
+        $('#updateSuccessAlert').css('display', 'block');
+        $('#updateSuccessAlert').delay(2000).slideUp(200);
     }
 
     /**

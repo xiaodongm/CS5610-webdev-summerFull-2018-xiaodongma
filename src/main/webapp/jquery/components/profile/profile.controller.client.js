@@ -48,6 +48,7 @@
     function updateProfile() {
         if(currentUser === null) {
             $('#updateFailAlert').css('display', 'block');
+            $('#updateFailAlert').delay(2000).slideUp(200);
             return;
         }
         var user = new User($usernameFld.val(), null, $firstnameFld.val(), $lastnameFld.val(), $roleFld.val(), $emailFld.val(),
@@ -56,13 +57,15 @@
             renderUserInfo(response);
         });
         $('#updateSuccessAlert').css('display', 'block');
+        $('#updateSuccessAlert').delay(2000).slideUp(200);
     }
 
     function logout() {
         currentUser = null;
         userService
             .logout()
-            .then($('#logoutAlert').css('display', 'block'));
+        $('#logoutAlert').css('display', 'block');
+        $('#logoutAlert').delay(2000).slideUp(200);
     }
 
 })();

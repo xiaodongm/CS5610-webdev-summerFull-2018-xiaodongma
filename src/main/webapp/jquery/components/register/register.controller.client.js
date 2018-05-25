@@ -17,15 +17,18 @@
         $passwordFld = $('#password').val();
         $verifyPasswordFld = $('#verifyPassword').val();
         if($passwordFld !== $verifyPasswordFld){
-            alert('Password not match');
+            $('#passwordAlert').css('display', 'block');
+            $('#passwordAlert').delay(2000).slideUp(200);
+        }else{
+            var user = new User($usernameFld, $passwordFld, null, null, null, null, null, null);
+            userService.register(user).then(function (response) {
+                if(response.ok){
+                    window.location.href='http://localhost:8080/jquery/components/profile/profile.template.client.html';
+                }else{
+                    $('#signupAlert').css('display', 'block');
+                    $('#signupAlert').delay(2000).slideUp(200);
+                }
+            })
         }
-        var user = new User($usernameFld, $passwordFld, null, null, null, null, null, null);
-        userService.register(user).then(function (response) {
-            if(response.ok){
-                window.location.href='http://localhost:8080/jquery/components/profile/profile.template.client.html';
-            }else{
-                ($('#signupAlert').css('display', 'block'));
-            }
-        })
     }
 })();
