@@ -133,9 +133,9 @@ public class UserService {
 	}
 
 
-//	@PostMapping("/api/logout")
-//	public void logout(HttpSession session) {
-//		session.invalidate();
-//	}
+	@PostMapping("/api/logout")
+	public void logout(HttpSession session) {
+		session.invalidate();
+	}
 
 }

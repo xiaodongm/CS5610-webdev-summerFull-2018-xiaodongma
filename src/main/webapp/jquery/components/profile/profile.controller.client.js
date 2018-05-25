@@ -11,7 +11,7 @@
     $(main);
 
     function main() {
-        // $usernameFld = $('#username');
+        $usernameFld = $('#username');
         $firstnameFld = $('#firstname');
         $lastnameFld = $('#lastname');
         $phoneFld = $('#phone');
@@ -20,23 +20,19 @@
         $dateOfBirthFld = $('#dateOfBirth');
         $updateBtn = $('#updateBtn');
         $updateBtn.click(updateProfile);
-        // $logoutBtn = $('#loginBtn');
-        // $logoutBtn.click(logout);
+        $logoutBtn = $('#logoutBtn');
+        $logoutBtn.click(logout);
         getUserInfo();
     }
     
     function renderUserInfo(user) {
-        // $usernameFld.val(user.username);
+        $usernameFld.val(user.username);
         $firstnameFld.val(user.firstName);
         $lastnameFld.val(user.lastName);
         $phoneFld.val(user.phone);
         $emailFld.val(user.email);
         $roleFld.val(user.role);
-        var date;
-        if(user.dateOfBirth != null){
-            date = user.dateOfBirth.split('T')[0];
-        }
-        $dateOfBirthFld.val(date);
+        $dateOfBirthFld.val(user.dateOfBirth);
     }
     
     function getUserInfo() {
@@ -46,14 +42,20 @@
                 renderUserInfo(response);
             })
     }
-    function updateProfile() {
-        var user = new User(null, null, $firstnameFld.val(), $lastnameFld.val(), $roleFld.val(), $emailFld.val(),
-            $phoneFld.val(), $dateOfBirthFld.val());
 
-        console.log(user);
+    function updateProfile() {
+        var user = new User($usernameFld.val(), null, $firstnameFld.val(), $lastnameFld.val(), $roleFld.val(), $emailFld.val(),
+            $phoneFld.val(), $dateOfBirthFld.val());
         userService.updateProfile(user).then(function (response) {
             renderUserInfo(response);
-        })
+        });
+        alert('Update Success');
     }
-    // function logout() { … }
+
+    function logout() {
+        userService
+            .logout();
+        alert('logout success');
+    }
+
 })();

@@ -16,6 +16,7 @@ function UserServiceClient() {
     this.registerUrl = 'http://localhost:8080/api/register';
     this.loginUrl = 'http://localhost:8080/api/login';
     this.profileUrl = 'http://localhost:8080/api/profile';
+    this.logoutUrl = 'http://localhost:8080/api/logout';
     var self = this;
 
     /**
@@ -159,7 +160,13 @@ function UserServiceClient() {
      * logout a user
      */
     function logout() {
-
+        return fetch(self.logoutUrl, {
+            credentials: 'same-origin',
+            method: 'post',
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
     }
 
 }
