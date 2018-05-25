@@ -48,14 +48,14 @@
             $phoneFld.val(), $dateOfBirthFld.val());
         userService.updateProfile(user).then(function (response) {
             renderUserInfo(response);
-        });
-        alert('Update Success');
+        }).then($('#updateAlert').css('display', 'block'));
     }
 
     function logout() {
         userService
-            .logout();
-        alert('logout success');
+            .logout()
+            .then($('#logoutAlert').css('display', 'block'));
+
     }
 
 })();
