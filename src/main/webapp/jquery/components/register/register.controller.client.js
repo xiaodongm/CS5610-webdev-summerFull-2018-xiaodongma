@@ -24,7 +24,7 @@
             if(response.ok){
                 window.location.href='http://localhost:8080/jquery/components/profile/profile.template.client.html';
             }else{
-                alert('Can not register');
+                ($('#signupAlert').css('display', 'block'));
             }
         })
     }

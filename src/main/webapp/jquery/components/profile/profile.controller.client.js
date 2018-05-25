@@ -8,6 +8,7 @@
     var $dateOfBirthFld;
     var $updateBtn, $logoutBtn;
     var userService = new UserServiceClient();
+    var currentUser = null;
     $(main);
 
     function main() {
@@ -26,6 +27,7 @@
     }
     
     function renderUserInfo(user) {
+        currentUser = user;
         $usernameFld.val(user.username);
         $firstnameFld.val(user.firstName);
         $lastnameFld.val(user.lastName);
@@ -44,18 +46,23 @@
     }
 
     function updateProfile() {
+        if(currentUser === null) {
+            $('#updateFailAlert').css('display', 'block');
+            return;
+        }
         var user = new User($usernameFld.val(), null, $firstnameFld.val(), $lastnameFld.val(), $roleFld.val(), $emailFld.val(),
             $phoneFld.val(), $dateOfBirthFld.val());
         userService.updateProfile(user).then(function (response) {
             renderUserInfo(response);
-        }).then($('#updateAlert').css('display', 'block'));
+        });
+        $('#updateSuccessAlert').css('display', 'block');
     }
 
     function logout() {
+        currentUser = null;
         userService
             .logout()
             .then($('#logoutAlert').css('display', 'block'));
-
     }
 
 })();
