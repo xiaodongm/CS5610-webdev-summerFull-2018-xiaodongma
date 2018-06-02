@@ -50,6 +50,11 @@ public class ModuleService {
 		return null;		
 	}
 	
+	@GetMapping("/api/module")
+	public Iterable<Module> findAllModules() {
+		return moduleRepository.findAll(); 
+	}
+	
 	@DeleteMapping("/api/module/{mId}")
 	public void deleteModule( @PathVariable("mId") int moduleId) {
 		moduleRepository.deleteById(moduleId);
