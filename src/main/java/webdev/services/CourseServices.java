@@ -4,6 +4,8 @@
 package webdev.services;
 
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,6 +31,9 @@ public class CourseServices {
 	
 	@PostMapping("/api/course")
 	public Course createCourse(@RequestBody Course course) {
+			Date date = new Date();
+			course.setCreated(date);
+			course.setModified(date);
 			return courseRepository.save(course);
 	}
 
