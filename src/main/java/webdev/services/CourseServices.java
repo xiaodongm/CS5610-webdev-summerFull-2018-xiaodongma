@@ -5,6 +5,7 @@ package webdev.services;
 
 
 import java.util.Date;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -41,5 +42,15 @@ public class CourseServices {
 	public void deleteCourse(@PathVariable("courseId") int id) {
 		courseRepository.deleteById(id);
 	}
+	
+	@GetMapping("/api/course/{cid}")
+	public Course findCourseById(@PathVariable("cid") int id) {
+		Optional<Course> data = courseRepository.findById(id);
+		if(data.isPresent()) {
+			return data.get();
+		}
+		return null;
+	}
+	
 	
 }

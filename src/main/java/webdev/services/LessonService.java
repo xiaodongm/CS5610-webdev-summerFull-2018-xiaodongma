@@ -14,16 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import webdev.models.Lesson;
 import webdev.models.Module;
-import webdev.repositories.CourseRepository;
 import webdev.repositories.LessonRepository;
 import webdev.repositories.ModuleRepository;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
 public class LessonService {
-
-	@Autowired
-	CourseRepository courseRepository;
 
 	@Autowired
 	ModuleRepository moduleRepository;
