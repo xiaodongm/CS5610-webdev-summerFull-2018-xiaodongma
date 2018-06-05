@@ -1,5 +1,6 @@
 package webdev.services;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,7 +37,8 @@ public class TopicService {
 		
 		if (data.isPresent()) {
 			Lesson lesson = data.get();
-			newTopic.setLesson(lesson);;
+			newTopic.setLesson(lesson);
+			newTopic.getLesson().getModule().getCourse().setModified(new Date());
 			return topicRepository.save(newTopic);
 		}
 		return null;
@@ -44,6 +46,10 @@ public class TopicService {
 	
 	@DeleteMapping("/api/topic/{tid}")
 	public void deleteTopic(@PathVariable("tid") int topicId) {
+		Optional<Topic> data = topicRepository.findById(topicId);
+		if(data.isPresent()) {
+			data.get().getLesson().getModule().getCourse().setModified(new Date());
+		}
 		topicRepository.deleteById(topicId);
 	}
 	
