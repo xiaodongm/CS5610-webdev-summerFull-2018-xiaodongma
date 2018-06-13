@@ -25,7 +25,6 @@ public class Topic {
 	@JsonIgnore
 	private Lesson lesson;
 	@OneToMany(mappedBy="topic", cascade = CascadeType.REMOVE, orphanRemoval = true)
-	@JsonIgnore
 	private List<Widget> widgets;
 	
 	public List<Widget> getWidgets() {

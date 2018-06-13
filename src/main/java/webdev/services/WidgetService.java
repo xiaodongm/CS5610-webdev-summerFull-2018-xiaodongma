@@ -41,11 +41,22 @@ public class WidgetService {
 		return (List<Widget>) widgetRepository.findAll();
 	}
 	
-	@PostMapping("/api/widget/save")
-	public void saveAllWidgets(@RequestBody List<Widget> widgets) {
-		widgetRepository.deleteAll();
-		for(Widget widget: widgets) {
-			widgetRepository.save(widget);
+	
+	@PostMapping("/api/topic/{tid}/widget")
+	public void saveAllWidgets(@PathVariable("tid") int topicId, @RequestBody List<Widget> newWidgets) {
+		
+		Optional<Topic> data = topicRepository.findById(topicId);
+		
+		if (data.isPresent()) {
+			List<Widget> widgets = findAllWidgetsForTopic(topicId);
+			for(Widget widget : widgets) {
+				widgetRepository.delete(widget);
+			}
+			Topic topic = data.get();
+			for(Widget widget : newWidgets) {
+				widget.setTopic(topic);
+				widgetRepository.save(widget);
+			}
 		}
 	}
 	

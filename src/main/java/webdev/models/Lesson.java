@@ -25,7 +25,6 @@ public class Lesson {
 	@JsonIgnore
 	private Module module;
 	@OneToMany(mappedBy="lesson", cascade = CascadeType.REMOVE, orphanRemoval = true)
-	@JsonIgnore
 	private List<Topic> topics;
 	
 
