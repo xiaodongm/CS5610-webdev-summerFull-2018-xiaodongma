@@ -21,9 +21,10 @@ public class Widget {
 	private int id;
 	private String text;
 	private String widgetType;
+	private int size;
 	@ManyToOne
 	@JsonIgnore
-	private Lesson lesson;
+	private Topic topic;
 	public String getWidgetType() {
 		return widgetType;
 	}
@@ -42,10 +43,17 @@ public class Widget {
 	public void setText(String text) {
 		this.text = text;
 	}
-	public Lesson getLesson() {
-		return lesson;
+	public Topic getTopic() {
+		return topic;
 	}
-	public void setLesson(Lesson lesson) {
-		this.lesson = lesson;
+	public void setTopic(Topic topic) {
+		this.topic = topic;
 	}
+	public int getSize() {
+		return size;
+	}
+	public void setSize(int size) {
+		this.size = size;
+	}
+	
 }
