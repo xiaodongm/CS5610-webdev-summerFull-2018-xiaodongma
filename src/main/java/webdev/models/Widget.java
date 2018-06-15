@@ -25,18 +25,17 @@ public class Widget {
 	private String style;
 	private String width;
 	private String height;
-	private int order;
+	private int widgetOrder;
 	private String className;
 	private String src;
-
 	enum ListType {
-		ordered, unordered
+		Ordered, Unordered
 	};
-
 	private ListType listType;
 	private String listItems;
 	private String widgetType;
 	private int size;
+	
 	@ManyToOne
 	@JsonIgnore
 	private Topic topic;
@@ -121,12 +120,13 @@ public class Widget {
 		this.height = height;
 	}
 
-	public int getOrder() {
-		return order;
+
+	public int getWidgetOrder() {
+		return widgetOrder;
 	}
 
-	public void setOrder(int order) {
-		this.order = order;
+	public void setWidgetOrder(int widgetOrder) {
+		this.widgetOrder = widgetOrder;
 	}
 
 	public String getClassName() {
