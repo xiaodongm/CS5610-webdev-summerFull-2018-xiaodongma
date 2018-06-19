@@ -13,10 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import webdev.models.Course;
 import webdev.models.Topic;
-import webdev.models.User;
 import webdev.models.Widget;
 import webdev.repositories.TopicRepository;
 import webdev.repositories.WidgetRepository;
@@ -89,7 +86,6 @@ public class WidgetService {
 		if (data.isPresent()) {
 			Widget widget = data.get();
 			widget.setName(newWidget.getName());
-			widget.setId(newWidget.getId());
 			widget.setText(newWidget.getText());
 			widget.setHref(newWidget.getHref());
 			widget.setStyle(newWidget.getStyle());
