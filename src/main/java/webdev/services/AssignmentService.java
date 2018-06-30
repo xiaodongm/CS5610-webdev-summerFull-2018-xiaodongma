@@ -1,5 +1,6 @@
 package webdev.services;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -48,7 +49,14 @@ public class AssignmentService {
 		Optional<Topic> data = topicRepository.findById(topicId);
 		if(data.isPresent()) {
 			Topic topic = data.get();
-			return topic.getWidgets();
+			List<Widget> widgets = topic.getWidgets();
+			List<Widget> assignments = new ArrayList<>();
+			for(Widget widget: widgets) {
+				if(widget.getWidgetType().equals ("assignment")) {
+					assignments.add(widget);
+				}
+			}
+			return assignments;
 		}
 		return null;
 	}
