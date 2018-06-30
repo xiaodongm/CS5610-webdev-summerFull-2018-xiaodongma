@@ -52,13 +52,13 @@ public class AssignmentService {
 			List<Widget> widgets = topic.getWidgets();
 			List<Widget> assignments = new ArrayList<>();
 			for(Widget widget: widgets) {
-				if(widget.getWidgetType().equals ("assignment")) {
+				if(widget instanceof Assignment) {
 					assignments.add(widget);
 				}
 			}
 			return assignments;
 		}
-		return null;
+		return new ArrayList<>();
 	}
 	
 	@PostMapping("/api/topic/{topicId}/assignment")
@@ -83,6 +83,8 @@ public class AssignmentService {
 		}
 		assignmentRepository.deleteById(assignmentId);
 	}
+	
+	
 	
 	
 }
