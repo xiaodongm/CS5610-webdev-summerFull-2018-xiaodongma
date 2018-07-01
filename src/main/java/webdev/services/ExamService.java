@@ -85,18 +85,15 @@ public class ExamService {
 	}
 	
 	@PutMapping("/api/exam/{eid}")
-	public Exam updateExam(@PathVariable("eid") int examId, @RequestBody Exam exam) {
+	public void updateExam(@PathVariable("eid") int examId, @RequestBody Exam exam) {
 		Optional<Exam> data = examRepository.findById(examId);
-		Exam newExam = new Exam();
 		if(data.isPresent()) {
-			newExam = data.get();
+			Exam newExam = data.get();
 			newExam.setTitle(exam.getTitle());
 			newExam.setDescription(exam.getDescription());
 			newExam.setPoints(exam.getPoints());
-			newExam.setBaseExamQuestions(exam.getBaseExamQuestions());
 			examRepository.save(newExam);
 		}
-		return newExam;
 	}
 	
 }
