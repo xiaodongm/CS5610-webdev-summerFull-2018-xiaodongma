@@ -91,6 +91,7 @@ public class ExamService {
 			Exam newExam = data.get();
 			newExam.setTitle(exam.getTitle());
 			newExam.setDescription(exam.getDescription());
+			newExam.setPoints(exam.getPoints());
 			newExam.setBaseExamQuestions(exam.getBaseExamQuestions());
 			examRepository.save(newExam);
 		}

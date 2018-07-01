@@ -11,8 +11,9 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Exam extends Widget {
-	private String Description;
 	private String title;
+	private String points;
+	private String Description;
 	@OneToMany(mappedBy="exam", cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private List<BaseExamQuestion> baseExamQuestions;
 	
@@ -23,6 +24,12 @@ public class Exam extends Widget {
 		Description = description;
 	}
 	
+	public String getPoints() {
+		return points;
+	}
+	public void setPoints(String points) {
+		this.points = points;
+	}
 	public String getTitle() {
 		return title;
 	}
