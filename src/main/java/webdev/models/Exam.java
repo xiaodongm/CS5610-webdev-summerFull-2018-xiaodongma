@@ -13,17 +13,16 @@ import javax.persistence.OneToMany;
 public class Exam extends Widget {
 	private String title;
 	private String points;
-	private String Description;
+	private String description;
 	@OneToMany(mappedBy="exam", cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private List<BaseExamQuestion> baseExamQuestions;
 	
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
-	
 	public String getPoints() {
 		return points;
 	}
