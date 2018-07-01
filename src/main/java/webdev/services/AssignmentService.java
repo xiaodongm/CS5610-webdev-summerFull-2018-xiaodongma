@@ -59,7 +59,7 @@ public class AssignmentService {
 			}
 			return assignments;
 		}
-		return new ArrayList<>();
+		return null;
 	}
 	
 	@PostMapping("/api/topic/{topicId}/assignment")

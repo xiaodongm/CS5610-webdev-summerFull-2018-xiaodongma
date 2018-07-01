@@ -1,5 +1,6 @@
 package webdev.services;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -10,8 +11,10 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
 import webdev.models.Exam;
 import webdev.models.Topic;
 import webdev.models.Widget;
@@ -46,7 +49,14 @@ public class ExamService {
 		Optional<Topic> data = topicRepository.findById(topicId);
 		if(data.isPresent()) {
 			Topic topic = data.get();
-			return topic.getWidgets();
+			List<Widget> widgets = topic.getWidgets();
+			List<Widget> exams = new ArrayList<>();
+			for(Widget widget: widgets) {
+				if(widget instanceof Exam) {
+					exams.add(widget);
+				}
+			}
+			return exams;
 		}
 		return null;
 	}
@@ -72,6 +82,18 @@ public class ExamService {
 			data.get().getTopic().getLesson().getModule().getCourse().setModified(new Date());
 		}
 		examRepository.deleteById(examId);
+	}
+	
+	@PutMapping("/api/exam/{eid}")
+	public void updateExam(@PathVariable("eid") int examId, @RequestBody Exam exam) {
+		Optional<Exam> data = examRepository.findById(examId);
+		if(data.isPresent()) {
+			Exam newExam = data.get();
+			newExam.setTitle(exam.getTitle());
+			newExam.setDescription(exam.getDescription());
+			newExam.setBaseExamQuestions(exam.getBaseExamQuestions());
+			examRepository.save(newExam);
+		}
 	}
 	
 }
