@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Exam extends Widget {
 	private String Description;
-	private int points;
+	private String title;
 	@OneToMany(mappedBy="exam", cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private List<BaseExamQuestion> baseExamQuestions;
 	
@@ -22,11 +22,12 @@ public class Exam extends Widget {
 	public void setDescription(String description) {
 		Description = description;
 	}
-	public int getPoints() {
-		return points;
+	
+	public String getTitle() {
+		return title;
 	}
-	public void setPoints(int points) {
-		this.points = points;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	public List<BaseExamQuestion> getBaseExamQuestions() {
 		return baseExamQuestions;
