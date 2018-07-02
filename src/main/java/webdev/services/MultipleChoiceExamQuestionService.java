@@ -28,12 +28,12 @@ public class MultipleChoiceExamQuestionService {
 	@Autowired
 	MultipleChoiceExamQuestionRepository repository;
 	
-	@GetMapping("/api/multipleChoice")
+	@GetMapping("/api/choice")
 	public List<MultipleChoiceExamQuestion> findAllMultipleChoiceQuestions() {
 		return (List<MultipleChoiceExamQuestion>) repository.findAll();
 	}
 	
-	@GetMapping("/api/multipleChoice/{mqid}")
+	@GetMapping("/api/choice/{mqid}")
 	public MultipleChoiceExamQuestion findMultipleChoiceExamQuestionsById(@PathVariable("mqid") int id) {
 		Optional<MultipleChoiceExamQuestion> data = repository.findById(id);
 		if(data.isPresent()) {
@@ -42,7 +42,7 @@ public class MultipleChoiceExamQuestionService {
 		return null;
 	}
 	
-	@GetMapping("/api/exam/{examId}/multipleChoice")
+	@GetMapping("/api/exam/{examId}/choice")
 	public List<MultipleChoiceExamQuestion> findAllMultipleChoiceExamQuestionsForExam(@PathVariable("examId") int examId) {
 		Optional<Exam> data = examRepository.findById(examId);
 		if(data.isPresent()) {
@@ -59,7 +59,7 @@ public class MultipleChoiceExamQuestionService {
 		return null;
 	}
 	
-	@PostMapping("/api/exam/{examId}/multipleChoice")
+	@PostMapping("/api/exam/{examId}/choice")
 	public MultipleChoiceExamQuestion createMultipleChoiceExamQuestion(
 			@PathVariable("examId") int examId,
 			@RequestBody MultipleChoiceExamQuestion newQuestion) {
@@ -73,13 +73,13 @@ public class MultipleChoiceExamQuestionService {
 		return null;		
 	}
 	
-	@DeleteMapping("/api/multipleChoice/{mqid}")
+	@DeleteMapping("/api/choice/{mqid}")
 	public void deleteMultipleChoiceExamQuestion(@PathVariable("mqid") int id) {
 		repository.deleteById(id);
 	}
 	
 	
-	@PutMapping("/api/multipleChoice/{mqid}")
+	@PutMapping("/api/choice/{mqid}")
 	public void updateMultipleChoiceExamQuestion(@PathVariable("mqid") int id, @RequestBody MultipleChoiceExamQuestion question) {
 		Optional<MultipleChoiceExamQuestion> data = repository.findById(id);
 		if(data.isPresent()) {
